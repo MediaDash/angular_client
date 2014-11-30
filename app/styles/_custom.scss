@@ -1,0 +1,24 @@
+.stage {
+  position: fixed;
+  top:0px;
+  margin: 0px;
+  height: 100vh;
+  width: 100%;
+  background: $color-accent;
+}
+
+.lg {
+  height: $base-font-size-xl;
+  font-size: $base-font-size-xl
+}
+
+.centered_form {
+  height: 200px;
+  width: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+  text-align: center;
+}
