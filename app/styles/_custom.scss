@@ -29,3 +29,14 @@
   width: 80%;
   margin: 10px;
 }
+
+.am-wrapper{
+  float:left;
+  position:relative;
+  overflow:hidden;
+}
+
+.am-wrapper img{
+  position:absolute;
+  outline:none;
+}
