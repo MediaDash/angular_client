@@ -16,7 +16,8 @@
       <p> {{ parseDate(tweet.timestamp) | date:'yyyy-MM-dd HH:mm:ss' }} </p>
       <p> Favorites: {{ tweet.likes }} </p>
       <p> Reshares: {{ tweet.reshares }} </p>
-      <img ng-show="tweet.image" ng-src={{tweet.image}}>
+      <p> {{ tweet.image }} </p>
+      <img ng-src="{{ tweet.image }}">
     </li>
   </ul>
 </div>

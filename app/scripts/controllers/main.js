@@ -10,7 +10,7 @@
 angular.module('newAngApp')
   .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 
-    $scope.term = "dbc";
+    $scope.term = "mediadash";
     $scope.tweet_url = 'http://mediadashapi.herokuapp.com/twitter?term=' + $scope.term;
     $http.get($scope.tweet_url).success(function(data) {
           console.log(data);
