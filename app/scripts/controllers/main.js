@@ -16,4 +16,8 @@ angular.module('newAngApp')
           console.log(data);
           $scope.tweets = data;
         });
+
+    $scope.parseDate = function(date){
+      return Date.parse(date);
+    }
   }]);
