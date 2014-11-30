@@ -1,0 +1,19 @@
+<meta name="twitter:card" content="summary" />
+
+<div class="tweets">
+  <ul>
+    <li class="tweet" ng-repeat="tweet in tweets">
+      <img ng-src="{{ tweet.userProfilePic }}">
+      <p> {{ tweet.username }} </p>
+      <p> {{ tweet.text }} </p>
+      <p> {{ parseDate(tweet.timestamp) | date:'yyyy-MM-dd HH:mm:ss' }} </p>
+      <p> Favorites: {{ tweet.likes }} </p>
+      <p> Reshares: {{ tweet.reshares }} </p>
+      <p class="tweet_image"> {{ tweet.image }} </p>
+      <img class="tweet-image" ng-src="{{ tweet.image }}">
+    </li>
+  </ul>
+</div>
+
+
+

@@ -26,9 +26,14 @@
 .tweet {
   list-style: none;
   background: white;
-  width: 80%;
-  margin: 10px;
+  border-radius: 5px;
+  background: #fff;
+  background-clip: padding-box;
+  position: relative;
+  width: auto;
+  height: auto;
 }
+
 
 /* Transitions */
 .transition-050 {
@@ -88,3 +93,4 @@
 .bgcolor {
   background-color: #fff;
 }
+
