@@ -11,7 +11,7 @@ angular.module('newAngApp')
   .controller('MainCtrl', ['$scope', '$http', function ($scope, $http) {
 
     // Term entered by user
-    $scope.term = 'mediadash';
+    $scope.term = 'football';
 
     // URLs to fetch content
     var baseURL = 'http://mediadashapi.herokuapp.com/';

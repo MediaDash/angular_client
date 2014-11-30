@@ -11,6 +11,7 @@
     Set the width to whatever you want the width of your site to be. */
 .container { 
     max-width: $container-width;
+    height: $container-height;
     margin: 0 auto; 
 }
 

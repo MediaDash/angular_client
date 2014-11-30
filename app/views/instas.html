@@ -1,6 +1,13 @@
-<div class="am-container" id="am-container">
-  <li class="tweet" >
-  <a href="#" ng-repeat="insta in instas">
-    <img class="tile" ng-src="{{ insta.image }}" title="{{ insta.text }}"></img>
-  </a>
-</div>
+<section class="module">
+  <figure class='small' ng-repeat="insta in instas">
+    <a href="{{ insta.url }}" class="animate-repeat">
+      <img ng-src="{{ insta.image }}" alt="{{ insta.text }}">
+    </a>
+    <figcaption class="transition-050 opacity85">
+      <a href="">
+        <strong class="text transition-050 title">{{ insta.username }}</strong>
+        <span class="text transition-050 desc">{{ insta.text }}</span>
+      </a>
+    </figcaption>
+  </figure>
+</section>
