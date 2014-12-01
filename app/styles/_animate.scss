@@ -6,19 +6,99 @@
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter,
 .animate-repeat.ng-leave {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+  -webkit-transition:all linear $time;
+  transition:all linear $time;
 }
 
 .animate-repeat.ng-leave.ng-leave-active,
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter {
   opacity:0;
-  max-height:0;
 }
 
 .animate-repeat.ng-leave,
 .animate-repeat.ng-move.ng-move-active,
 .animate-repeat.ng-enter.ng-enter-active {
   opacity:1;
+}
+
+/*
+	See: https://docs.angularjs.org/guide/animations
+  We're using CSS transitions for when
+  the enter and move events are triggered
+  for the element that has the .fade
+  class
+*/
+.fade.ng-enter, .fade.ng-move {
+  -webkit-transition:$time linear all;
+  -moz-transition:$time linear all;
+  -o-transition:$time linear all;
+  transition:$time linear all;
+  opacity:0;
+}
+
+/*
+ The ng-enter-active and ng-move-active
+ are where the transition destination properties
+ are set so that the animation knows what to
+ animate.
+*/
+.fade.ng-enter.ng-enter-active,
+.fade.ng-move.ng-move-active {
+  opacity:1;
+}
+
+/*
+  We're using CSS keyframe animations for when
+  the leave event is triggered for the element
+  that has the .fade class
+*/
+.fade.ng-leave {
+  -webkit-animation:$time my_animation;
+  -moz-animation:$time my_animation;
+  -o-animation:$time my_animation;
+  animation:$time my_animation;
+}
+
+@keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+/*
+  Unfortunately each browser vendor requires
+  its own definition of keyframe animation code...
+*/
+@-webkit-keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-moz-keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-o-keyframes my_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+
+.css-class-add, .css-class-remove {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) $time;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) $time;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) $time;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) $time;
+}
+
+.css-class,
+.css-class-add.css-class-add-active {
+  color: red;
+  font-size:3em;
+}
+
+.css-class-remove.css-class-remove-active {
+  font-size:1.0em;
+  color:black;
 }

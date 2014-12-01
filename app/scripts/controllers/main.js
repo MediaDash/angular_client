@@ -34,6 +34,7 @@ angular.module('newAngApp')
       $http.get($scope.instaUrl).success(function(data) {
         console.log(data);
         $scope.instas = data;
+        $scope.changeActiveTemplate(1);
       });
     };
 
@@ -44,7 +45,6 @@ angular.module('newAngApp')
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
       $scope.getInstas();
       $scope.getTweets();
-      $scope.changeActiveTemplate(1);
     };
 
     $scope.changeActiveTemplate = function(index) {
