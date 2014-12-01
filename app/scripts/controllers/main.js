@@ -19,8 +19,6 @@ angular.module('newAngApp')
 
     // URLs to fetch content
     var baseURL = 'http://mediadashapi.herokuapp.com/';
-    $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
-    $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
     
     // HTTP requests
     $http.get($scope.tweetUrl).success(function(data) {
@@ -35,20 +33,22 @@ angular.module('newAngApp')
 
     $scope.getTweets = function() {
       $http.get($scope.tweetUrl).success(function(data) {
-            console.log(data);
-            $scope.tweets = data;
+        console.log(data);
+        $scope.tweets = data;
       });
     };
 
     $scope.getInstas = function() {
-       $http.get($scope.instaUrl).success(function(data) {
-             console.log(data);
-             $scope.instas = data;
-       });
+      $http.get($scope.instaUrl).success(function(data) {
+        console.log(data);
+        $scope.instas = data;
+      });
     };
 
     $scope.submit = function() {
       $scope.term = $scope.term.replace(/\#/, '');
+      $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
+      $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
       $scope.getInstas();
       $scope.getTweets();
       $scope.changeViews(1);
