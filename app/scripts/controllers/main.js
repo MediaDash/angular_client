@@ -21,12 +21,15 @@ angular.module('newAngApp')
     // HTTP requests
     $http.get($scope.tweetUrl).success(function(data) {
           console.log(data);
+          $scope.tweet = data[0];
           $scope.tweets = data;
     });
     $http.get($scope.instaUrl).success(function(data) {
           console.log(data);
           $scope.instas = data;
     });
+
+
 
 
     $scope.parseDate = function(date){

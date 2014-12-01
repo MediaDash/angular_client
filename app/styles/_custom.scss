@@ -1,5 +1,4 @@
 .stage {
-  position: fixed;
   top:0px;
   margin: 0px;
   height: 100vh;
@@ -23,19 +22,27 @@
   text-align: center;
 }
 
-.tweet {
-  list-style: none;
-  background: white;
-  border-radius: 5px;
-  background: #fff;
-  background-clip: padding-box;
-  position: relative;
-  width: auto;
-  height: auto;
+
+
+.card{
+  background-color: aliceblue;
+}
+
+.tweet_image{
+  text-align: center;
+}
+
+.tweet_text{
+  color: dodgerblue;
+}
+
+.tweet_avatar{
+  border-radius: 5%;
 }
 
 
 /* Transitions */
+
 .transition-050 {
   -moz-transition: 0.50s;
   -webkit-transition: 0.50s;
