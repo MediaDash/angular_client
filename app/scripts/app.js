@@ -23,14 +23,6 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/instas', {
-        templateUrl: 'views/instas.html',
-        controller: 'MainCtrl'
-      })
-      .when('/tweet', {
-        templateUrl: 'views/tweet.html',
-        controller: 'MainCtrl'
-      })
       .otherwise({
         redirectTo: '/'
       });
