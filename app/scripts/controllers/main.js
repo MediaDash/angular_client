@@ -9,7 +9,7 @@
  */
 angular.module('newAngApp')
 
-  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', '$timeout', 'socket', function ($scope, $location, $http, $interval, $timeout, socket) {
+  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', '$timeout', function ($scope, $location, $http, $interval, $timeout) {
 
     // Templates
     $scope.templates = {
@@ -85,11 +85,11 @@ angular.module('newAngApp')
       $scope.term = term.replace(/\#/, '');
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
-      $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
+      // $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
       getInstas();
       getTweets();
-      $scope.streamTweets();
-      $scope.incomingTweets();
+      // $scope.streamTweets();
+      // $scope.incomingTweets();
       $scope.changeActiveTemplate(1);
     };
 
