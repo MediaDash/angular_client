@@ -1,3 +1,11 @@
+.hidescroll {
+  overflow: -moz-scrollbars-none;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
 .stage {
   top:0px;
   margin: 0px;

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="newAngApp">
+  <body class="hidescroll" ng-app="newAngApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -24,11 +24,11 @@
       <header>
         <div class="span_1 fl-l"><a ng-click="previousTemplate()"> &lt; </a></div>
         <div class="hashtag span_10 fl-l ta-c">
-          <h1>{{ term }}</h1>
+          <h1 ng-show="term" class="ng-hide">#{{ term }}</h1>
         </div>
-        <div class="span_1 fl-l"><a ng-click="nextTemplate()"> &gt; </a></div>
+        <div class="span_1 fl-r ta-r"><a ng-click="nextTemplate()"> &gt; </a></div>
       </header>
-      <div class="container" ng-include src="templates.active">
+      <div class="container fade" ng-include src="templates.active">
       </div>
     </div>
 
@@ -70,6 +70,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/animation.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -1,6 +1,6 @@
 <div class="module">
-  <figure class='small' ng-repeat="insta in instas">
-    <a href="{{ insta.url }}" class="animate-repeat">
+  <figure class='small animate-repeat' ng-repeat="insta in instas">
+    <a href="{{ insta.image }}">
       <img ng-src="{{ insta.image }}" alt="{{ insta.text }}">
     </a>
     <figcaption class="transition-050 opacity85">
