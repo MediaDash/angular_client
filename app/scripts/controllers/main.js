@@ -90,7 +90,7 @@ angular.module('newAngApp')
       getTweets();
       // $scope.streamTweets();
       // $scope.incomingTweets();
-      $scope.changeActiveTemplate(1);
+      changeActiveTemplate(1);
     };
 
     var changeActiveTemplate = function(index) {
@@ -145,7 +145,7 @@ angular.module('newAngApp')
           instaRefresh();
         });
 
-      },  10000);
+      },  60000);
     };
 
     var maxInstaTimestamp = function() {

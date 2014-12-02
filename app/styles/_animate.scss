@@ -1,22 +1,22 @@
 @keyframes driftY {
    from { transform: translateY(0px); }
-   to { transform: translateY(-800px); }
+   to { transform: translateY(-1000px); }
 }
 
 /* Firefox */
 @-moz-keyframes driftY {
    from { -moz-transform: translateY(0px); }
-   to { -moz-transform: translateY(-800px); }
+   to { -moz-transform: translateY(-1000px); }
 }
 /* WebKit - Chrome and Safari */
 @-webkit-keyframes driftY {
    from { -webkit-transform: translateY(0px); }
-   to { -webkit-transform: translateY(-800px); }
+   to { -webkit-transform: translateY(-1000px); }
 } 
 /* Opera */
 @-o-keyframes driftY {
    from { -o-transform: translateY(0px); }
-   to { -o-transform: translateY(-800px); }
+   to { -o-transform: translateY(-1000px); }
 }
 
 .driftUp {
@@ -31,13 +31,13 @@
   animation: driftY linear infinite alternate;
 
   /* Firefox */
-  -moz-animation-duration: 40s;
+  -moz-animation-duration: 60s;
   /* WebKit - Chrome and Safari */
-  -webkit-animation-duration: 40s;
+  -webkit-animation-duration: 60s;
   /* Opera */
-  -o-animation-duration: 40s;
+  -o-animation-duration: 60s;
   /* general syntax */
-  animation-duration: 40s;
+  animation-duration: 60s;
 }
 
 
