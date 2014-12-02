@@ -1,36 +1,45 @@
 <!-- this view does not render an image from twitter -->
 
-<div class="row " >
-	<div class="card span_10 mlr-a bgc-w" >
-		<div class="row">
-			<div class=" user_info span_10 mlr-a">
 
-				<img class="fl-l tweet_avatar span_2" ng-src="{{ tweet.userProfilePic }}">
-				<p class="fl-l fz-xl ">@{{ tweet.username }}</p>
-			</div>
+		<div class="row" >
+
+			<div class="card span_10 mlr-a bgc-w" >
+				<div class="row">
+					<div class=" user_info span_10 mlr-a">
+
+						<img class="fl-l tweet_avatar span_2" ng-src="{{ tweets.active.userProfilePic }}">
+						<p class="fl-l fz-xl ">@ {{ tweets.active.username }}</p>
+					</div>
+				</div>
+
+				<div class="row ">
+					<div class=" tweet_text span_10 mlr-a ">
+						<p class="ta-c fz-xl ">{{ tweets.active.text }}</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class=" span_10 mlr-a ">
+						<p class="retweets fl-l">Retweeted {{ tweets.active.reshares}}
+						 Favorites {{tweets.active.likes}}</p>
+						<p class="time_stamp fl-r fz-lg">
+							{{ parseDate(tweets.active.timestamp) | date:'yyyy-MM-dd HH:mm:ss' }}
+						</p>
+					</div>
+				</div>
+
+			</div> 
+
 		</div>
 
-		<div class="row ">
-			<div class=" tweet_text span_10 mlr-a ">
-				<p class="ta-c fz-xl ">{{ tweet.text }}</p>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class=" span_10 mlr-a ">
-				<p class="retweets fl-l">Retweeted {{ tweet.reshares}}
-				 Favorites {{tweet.likes}}</p>
-				<p class="time_stamp fl-r fz-lg">
-					{{ parseDate(tweet.timestamp) | date:'yyyy-MM-dd HH:mm:ss' }}
-				</p>
-			</div>
-		</div>
-
-	</div> 
-
-</div>
 
 
+<!-- 
+define directive outside of controller
+turn into a show tweet directive(create tweet directive to show new tweets)
+ -->
+
+ <!-- 1 write eleement directive (a way to call something) -->
 
 
 

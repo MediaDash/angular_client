@@ -8,7 +8,7 @@
  * Controller of the newAngApp
  */
 angular.module('newAngApp')
-  .controller('MainCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
+  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', function ($scope, $location, $http, $interval) {
 
     // Templates
     $scope.templates = {
@@ -22,11 +22,19 @@ angular.module('newAngApp')
     $scope.term = '';
     var baseURL = 'http://mediadashapi.herokuapp.com/';
 
+    // Models
+    $scope.tweets = {
+      available: [],
+      activeIndex: 0,
+      active: null,
+    }
+
     $scope.getTweets = function() {
       $http.get($scope.tweetUrl).success(function(data) {
-        console.log(data);
-        $scope.tweets = data;
-        $scope.tweet = data[0];
+        $scope.tweets.available = data;
+        $scope.tweets.activeIndex = 0;
+        $scope.tweets.active = $scope.tweets.available[0]
+        startCycleThroughTweets();
       });
     };
 
@@ -68,4 +76,12 @@ angular.module('newAngApp')
       return Date.parse(date);
     };
 
+    var startCycleThroughTweets = function() {
+      $interval(function(){
+      if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
+        $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
+        $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
+        }
+      },  8000);
+    }
   }]);
