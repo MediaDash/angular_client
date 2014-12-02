@@ -27,13 +27,13 @@ angular.module('newAngApp')
       available: [],
       activeIndex: 0,
       active: null,
-    }
+    };
 
     $scope.getTweets = function() {
       $http.get($scope.tweetUrl).success(function(data) {
         $scope.tweets.available = data;
         $scope.tweets.activeIndex = 0;
-        $scope.tweets.active = $scope.tweets.available[0]
+        $scope.tweets.active = $scope.tweets.available[0];
         startCycleThroughTweets();
       });
     };
@@ -83,5 +83,5 @@ angular.module('newAngApp')
         $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
         }
       },  8000);
-    }
+    };
   }]);
