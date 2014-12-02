@@ -17,7 +17,7 @@ angular.module('newAngApp')
       activeIndex: 0
     };
     console.log($scope.templates);
-    
+
     // Defaults
     $scope.term = '';
     var baseURL = 'http://mediadashapi.herokuapp.com/';
