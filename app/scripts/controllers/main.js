@@ -86,12 +86,10 @@ angular.module('newAngApp')
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
       $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
-      $scope.getInstas();
-      $scope.getTweets();
-      $scope.streamTweets();
-      $scope.incomingTweets();
       getInstas();
       getTweets();
+      $scope.streamTweets();
+      $scope.incomingTweets();
       $scope.changeActiveTemplate(1);
     };
 
@@ -134,20 +132,31 @@ angular.module('newAngApp')
     var instaRefresh = function() {
       $timeout(function(){ 
         
-        var instaUpdateUrl = baseURL + 'instaLatest?term=' + $scope.term + '&maxTimestamp=' + $scope.instas.available[$scope.instas.available.length - 1].timestamp;
+        var instaUpdateUrl = baseURL + 'instaLatest?term=' + $scope.term + '&maxTimestamp=' + maxInstaTimestamp();
         console.log(instaUpdateUrl);
 
         $http.get(instaUpdateUrl).success(function(data) {
           for ( var i = 0; i < data.length; i++ ) {
             $scope.instas.available.push(data[i]);
           } 
-          console.log($scope.instas.available);
+          console.log(data);
           $scope.instas.activeIndex = 0;
           $scope.instas.active = $scope.instas.available[0];
           instaRefresh();
         });
 
-      },  60000);
+      },  10000);
+    };
+
+    var maxInstaTimestamp = function() {
+      var maxTimestamp = 0;
+      var instas = $scope.instas.available;
+      for ( var i=0; i < instas.length; i++ ) {
+        if ( instas[i].timestamp > maxTimestamp ) {
+          maxTimestamp = instas[i].timestamp;
+        }
+      }
+      return maxTimestamp;
     };
 
   }]);
