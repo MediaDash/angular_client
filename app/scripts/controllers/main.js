@@ -82,6 +82,6 @@ angular.module('newAngApp')
         $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
         $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
         }
-      },  1000);
+      },  8000);
     }
   }]);
