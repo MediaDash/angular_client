@@ -132,14 +132,7 @@ angular.module('newAngApp')
       }, 8000);
     }
 
-    //this function only cycle through insta and tweets and then stops
-    //// I should create a way to have this cycle back and forth between tweets and instas and other views 
-    //// we create
-    var cycleThroughViews = function(){
-      $interval(function(){
-        $scope.nextTemplate();
-      }, 8000);
-    }
+
 
 
 
