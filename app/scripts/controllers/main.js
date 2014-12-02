@@ -23,6 +23,7 @@ angular.module('newAngApp')
     // Defaults
     $scope.term = '';
     var baseURL = 'http://mediadashapi.herokuapp.com/';
+    var testURL = 'http://localhost:9393/';
 
     // Models
     $scope.tweets = {
@@ -37,7 +38,7 @@ angular.module('newAngApp')
       active: null,
     };
 
-    $scope.getTweets = function() {
+    var getTweets = function() {
       $http.get($scope.tweetUrl).success(function(data) {
         $scope.tweets.available = data;
         $scope.tweets.activeIndex = 0;
@@ -46,6 +47,7 @@ angular.module('newAngApp')
       });
     };
 
+<<<<<<< HEAD
     $scope.streamTweets = function() {
       console.log('tweeted!');
       $http.get($scope.streamTweetUrl).success(function(data){
@@ -72,17 +74,19 @@ angular.module('newAngApp')
     };
 
     $scope.getInstas = function() {
+=======
+    var getInstas = function() {
+>>>>>>> changes before rebase
       $http.get($scope.instaUrl).success(function(data) {
         console.log(data);
         $scope.instas.available = data;
-        $scope.changeActiveTemplate(1);
+        changeActiveTemplate(1);
         instaRefresh();
       });
     };
 
     $scope.submit = function(term) {
       $scope.term = term.replace(/\#/, '');
-      console.log($scope.term);
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
       $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
@@ -91,22 +95,26 @@ angular.module('newAngApp')
       $scope.streamTweets();
       $scope.incomingTweets();
       $scope.changeActiveTemplate(1);
+      $scope.tweetUrl = testURL + 'twitter?term=' + $scope.term;
+      $scope.instaUrl = testURL + 'insta?term=' + $scope.term;
+      getInstas();
+      getTweets();
     };
 
-    $scope.changeActiveTemplate = function(index) {
+    var changeActiveTemplate = function(index) {
       $scope.templates.active = 'views/' + $scope.templates.available[index] + '.html';
       $scope.templates.activeIndex = index;
     };
 
     $scope.previousTemplate = function(){
       if( $scope.templates.activeIndex > 0 ) {
-        $scope.changeActiveTemplate( $scope.templates.activeIndex - 1) ;
+        changeActiveTemplate( $scope.templates.activeIndex - 1) ;
       }
     };
 
     $scope.nextTemplate = function(){
       if( $scope.templates.activeIndex < $scope.templates.available.length - 1 ) {
-        $scope.changeActiveTemplate( $scope.templates.activeIndex + 1 ) ;
+        changeActiveTemplate( $scope.templates.activeIndex + 1 ) ;
       }
     };
 
@@ -132,18 +140,20 @@ angular.module('newAngApp')
     var instaRefresh = function() {
       $timeout(function(){ 
         
-        var instaUpdateUrl = baseURL + 'instaRecent?term=' + $scope.term + '&maxTimestamp=' + $scope.instas.available[$scope.instas.available.length - 1].timestamp;
+        var instaUpdateUrl = testURL + 'instaLatest?term=' + $scope.term + '&maxTimestamp=' + $scope.instas.available[$scope.instas.available.length - 1].timestamp;
         console.log(instaUpdateUrl);
 
         $http.get(instaUpdateUrl).success(function(data) {
-          console.log(data);
-          $scope.instas.available.concat(data);
+          for ( var i = 0; i < data.length; i++ ) {
+            $scope.instas.available.push(data[i]);
+          } 
+          console.log($scope.instas.available);
           $scope.instas.activeIndex = 0;
           $scope.instas.active = $scope.instas.available[0];
           instaRefresh();
         });
 
-      },  10000);
+      },  60000);
     };
 
   }]);
