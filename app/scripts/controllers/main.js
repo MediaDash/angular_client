@@ -8,16 +8,16 @@
  * Controller of the newAngApp
  */
 angular.module('newAngApp')
-  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', function ($scope, $location, $http, $interval) {
+  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', 'socket', function ($scope, $location, $http, $interval, socket) {
 
     // Templates
     $scope.templates = {
-      available: ['main', 'instas', 'tweet'],
+      available: ['main', 'instas', 'tweet', 'tweet_socket'],
       active: 'views/main.html',
       activeIndex: 0
     };
     console.log($scope.templates);
-    
+
     // Defaults
     $scope.term = '';
     var baseURL = 'http://mediadashapi.herokuapp.com/';
@@ -38,6 +38,31 @@ angular.module('newAngApp')
       });
     };
 
+    $scope.streamTweets = function() {
+      console.log('tweeted!');
+      $http.get($scope.streamTweetUrl).success(function(data){
+        console.log(data);
+      });
+    };
+
+    $scope.incomingTweets = function() {
+      var streamedTweets = [];
+      var index = 0;
+      socket.on('tweet', function(data){
+        streamedTweets.push(data[0]);
+        // $scope.streamedTweet = $scope.streamedTweets[index];
+      });
+      $interval(function(){
+          $scope.streamedTweet = streamedTweets[index];
+          var lastObjectIndex = streamedTweets.indexOf($scope.streamedTweet);
+          if (lastObjectIndex + 1 === streamedTweets.length) {
+            index = lastObjectIndex;
+          } else {
+            index = lastObjectIndex + 1;
+          }
+        }, 5000);
+    };
+
     $scope.getInstas = function() {
       $http.get($scope.instaUrl).success(function(data) {
         console.log(data);
@@ -51,8 +76,12 @@ angular.module('newAngApp')
       console.log($scope.term);
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
+      $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
       $scope.getInstas();
       $scope.getTweets();
+      $scope.streamTweets();
+      $scope.incomingTweets();
+      $scope.changeActiveTemplate(1);
     };
 
     $scope.changeActiveTemplate = function(index) {
@@ -83,7 +112,7 @@ angular.module('newAngApp')
         $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
         } else {
          $scope.tweets.activeIndex = 0;
-         $scope.tweets.active = $scope.tweets.available[0]; 
+         $scope.tweets.active = $scope.tweets.available[0];
         }
       },  8000);
     };
