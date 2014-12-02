@@ -76,7 +76,7 @@ angular.module('newAngApp')
       console.log($scope.term);
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
-      $scope.streamTweetUrl = 'http://localhost:9393/twitter_stream?term=' + $scope.term;
+      $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
       $scope.getInstas();
       $scope.getTweets();
       $scope.streamTweets();
