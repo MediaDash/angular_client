@@ -1,7 +1,6 @@
 var gzippo = require('gzippo');
 var express = require('express');
 var morgan = require('morgan');
-var io = require('socket.io')
 var app = express();
 
 app.use(morgan('dev'));
