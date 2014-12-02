@@ -27,14 +27,16 @@ angular.module('newAngApp')
       available: [],
       activeIndex: 0,
       active: null,
-    };
+    }
+
 
     $scope.getTweets = function() {
       $http.get($scope.tweetUrl).success(function(data) {
         $scope.tweets.available = data;
         $scope.tweets.activeIndex = 0;
-        $scope.tweets.active = $scope.tweets.available[0];
+        $scope.tweets.active = $scope.tweets.available[0]
         startCycleThroughTweets();
+        console.log(data)
       });
     };
 
@@ -82,11 +84,13 @@ angular.module('newAngApp')
       $scope.streamTweets();
       $scope.incomingTweets();
       $scope.changeActiveTemplate(1);
+      cycleThroughViews();
     };
 
     $scope.changeActiveTemplate = function(index) {
-      $scope.templates.active = 'views/' + $scope.templates.available[index] + '.html';
-      $scope.templates.activeIndex = index;
+
+      $scope.templates.active = 'views/' + $scope.templates.available[index] + '.html'; 
+      $scope.templates.activeIndex = index; 
     };
 
     $scope.previousTemplate = function(){
@@ -96,6 +100,7 @@ angular.module('newAngApp')
     };
 
     $scope.nextTemplate = function(){
+      
       if( $scope.templates.activeIndex < $scope.templates.available.length - 1 ) {
         $scope.changeActiveTemplate( $scope.templates.activeIndex + 1 ) ;
       }
@@ -115,5 +120,18 @@ angular.module('newAngApp')
          $scope.tweets.active = $scope.tweets.available[0];
         }
       },  8000);
-    };
+    }
+
+
+    //this function only cycle through insta and tweets and then stops
+    //// I should create a way to have this cycle back and forth between tweets and instas and other views 
+    //// we create
+    var cycleThroughViews = function(){
+      $interval(function(){
+        $scope.nextTemplate();
+      }, 8000);
+    }
+
+
+
   }]);
