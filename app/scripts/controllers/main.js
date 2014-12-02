@@ -13,7 +13,7 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-      available: ['main', 'instas', 'tweet', 'tweet_socket'],
+      available: ['main', 'archer_tweet', 'instas', 'tweet', 'tweet_socket'],
       active: 'views/main.html',
       activeIndex: 0
     };

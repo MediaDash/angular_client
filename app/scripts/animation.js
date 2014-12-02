@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('newAngApp').animation('.fade', function() {
+angular.module('newAngApp').animation('.craziness', function() {
   return {
     enter : function(element, done) {
+      console.log('entering');
       element.css('opacity',0);
-      jQuery(element).animate({
+      $(element).animate({
         opacity: 1
       }, done);
 
@@ -13,13 +14,13 @@ angular.module('newAngApp').animation('.fade', function() {
       // cleanup operations
       return function(isCancelled) {
         if(isCancelled) {
-          jQuery(element).stop();
+          $(element).stop();
         }
       };
     },
     leave : function(element, done) {
       element.css('opacity', 1);
-      jQuery(element).animate({
+      $(element).animate({
         opacity: 0
       }, done);
 
@@ -28,13 +29,13 @@ angular.module('newAngApp').animation('.fade', function() {
       // cleanup operations
       return function(isCancelled) {
         if(isCancelled) {
-          jQuery(element).stop();
+          $(element).stop();
         }
       };
     },
     move : function(element, done) {
       element.css('opacity', 0);
-      jQuery(element).animate({
+      $(element).animate({
         opacity: 1
       }, done);
 
@@ -43,7 +44,7 @@ angular.module('newAngApp').animation('.fade', function() {
       // cleanup operations
       return function(isCancelled) {
         if(isCancelled) {
-          jQuery(element).stop();
+          $(element).stop();
         }
       };
     },
@@ -55,5 +56,5 @@ angular.module('newAngApp').animation('.fade', function() {
     removeClass : function(element, className, done) {
 
     }
-  }
+  };
 });
