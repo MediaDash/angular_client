@@ -47,7 +47,6 @@ angular.module('newAngApp')
       });
     };
 
-<<<<<<< HEAD
     $scope.streamTweets = function() {
       console.log('tweeted!');
       $http.get($scope.streamTweetUrl).success(function(data){
@@ -73,10 +72,7 @@ angular.module('newAngApp')
         }, 5000);
     };
 
-    $scope.getInstas = function() {
-=======
     var getInstas = function() {
->>>>>>> changes before rebase
       $http.get($scope.instaUrl).success(function(data) {
         console.log(data);
         $scope.instas.available = data;
@@ -94,11 +90,9 @@ angular.module('newAngApp')
       $scope.getTweets();
       $scope.streamTweets();
       $scope.incomingTweets();
-      $scope.changeActiveTemplate(1);
-      $scope.tweetUrl = testURL + 'twitter?term=' + $scope.term;
-      $scope.instaUrl = testURL + 'insta?term=' + $scope.term;
       getInstas();
       getTweets();
+      $scope.changeActiveTemplate(1);
     };
 
     var changeActiveTemplate = function(index) {
@@ -140,7 +134,7 @@ angular.module('newAngApp')
     var instaRefresh = function() {
       $timeout(function(){ 
         
-        var instaUpdateUrl = testURL + 'instaLatest?term=' + $scope.term + '&maxTimestamp=' + $scope.instas.available[$scope.instas.available.length - 1].timestamp;
+        var instaUpdateUrl = baseURL + 'instaLatest?term=' + $scope.term + '&maxTimestamp=' + $scope.instas.available[$scope.instas.available.length - 1].timestamp;
         console.log(instaUpdateUrl);
 
         $http.get(instaUpdateUrl).success(function(data) {
