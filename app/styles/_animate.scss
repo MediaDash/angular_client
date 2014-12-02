@@ -1,3 +1,46 @@
+@keyframes driftY {
+   from { transform: translateY(0px); }
+   to { transform: translateY(-800px); }
+}
+
+/* Firefox */
+@-moz-keyframes driftY {
+   from { -moz-transform: translateY(0px); }
+   to { -moz-transform: translateY(-800px); }
+}
+/* WebKit - Chrome and Safari */
+@-webkit-keyframes driftY {
+   from { -webkit-transform: translateY(0px); }
+   to { -webkit-transform: translateY(-800px); }
+} 
+/* Opera */
+@-o-keyframes driftY {
+   from { -o-transform: translateY(0px); }
+   to { -o-transform: translateY(-800px); }
+}
+
+.driftUp {
+  position: absolute;
+  /* Firefox */
+  -moz-animation: driftY linear infinite alternate;
+  /* WebKit - Chrome and Safari */
+  -webkit-animation: driftY linear infinite alternate;
+  /* Opera */
+  -o-animation: driftY linear infinite alternate;
+  /* general syntax */
+  animation: driftY linear infinite alternate;
+
+  /* Firefox */
+  -moz-animation-duration: 40s;
+  /* WebKit - Chrome and Safari */
+  -webkit-animation-duration: 40s;
+  /* Opera */
+  -o-animation-duration: 40s;
+  /* general syntax */
+  animation-duration: 40s;
+}
+
+
 .animate-repeat {
   list-style:none;
   box-sizing:border-box;

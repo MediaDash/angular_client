@@ -2,7 +2,7 @@
 <html class="no-js">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>MediaDash</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -22,11 +22,13 @@
     <!-- Add your site or application content here -->
     <div class='stage' ng-controller="MainCtrl as posts">
       <header>
-        <div class="span_1 fl-l"><a ng-click="previousTemplate()"> &lt; </a></div>
-        <div class="hashtag span_10 fl-l ta-c">
-          <h1 ng-show="term" class="ng-hide">#{{ term }}</h1>
+        <div ng-show="term" class="ng-hide z-nnn h-50">
+          <div class="span_1 fl-l bgc-b h-50 ta-l mtb-a"><a ng-click="previousTemplate()"> &lt; </a></div>
+          <div class="hashtag span_10 fl-l ta-c bgc-b h-50 va-tt">
+            <h1 class="va-tt mtb-a">#{{ term }}</h1>
+          </div>
+          <div class="span_1 fl-r ta-r bgc-b h-50 mtb-a"><a ng-click="nextTemplate()"> &gt; </a></div>
         </div>
-        <div class="span_1 fl-r ta-r"><a ng-click="nextTemplate()"> &gt; </a></div>
       </header>
       <div class="container fade" ng-include src="templates.active">
       </div>
@@ -54,7 +56,6 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>

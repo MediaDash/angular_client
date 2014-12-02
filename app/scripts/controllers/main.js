@@ -8,7 +8,8 @@
  * Controller of the newAngApp
  */
 angular.module('newAngApp')
-  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', 'socket', function ($scope, $location, $http, $interval, socket) {
+
+  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', '$timeout', 'socket', function ($scope, $location, $http, $interval, $timeout, socket) {
 
     // Templates
     $scope.templates = {
@@ -16,11 +17,13 @@ angular.module('newAngApp')
       active: 'views/main.html',
       activeIndex: 0
     };
+    
     console.log($scope.templates);
 
     // Defaults
     $scope.term = '';
     var baseURL = 'http://mediadashapi.herokuapp.com/';
+    var testURL = 'http://localhost:9393/';
 
     // Models
     $scope.tweets = {
@@ -29,7 +32,13 @@ angular.module('newAngApp')
       active: null,
     };
 
-    $scope.getTweets = function() {
+    $scope.instas = {
+      available: [],
+      activeIndex: 0,
+      active: null,
+    };
+
+    var getTweets = function() {
       $http.get($scope.tweetUrl).success(function(data) {
         $scope.tweets.available = data;
         $scope.tweets.activeIndex = 0;
@@ -63,47 +72,49 @@ angular.module('newAngApp')
         }, 5000);
     };
 
-    $scope.getInstas = function() {
+    var getInstas = function() {
       $http.get($scope.instaUrl).success(function(data) {
         console.log(data);
-        $scope.instas = data;
-        $scope.changeActiveTemplate(1);
+        $scope.instas.available = data;
+        changeActiveTemplate(1);
+        instaRefresh();
       });
     };
 
     $scope.submit = function(term) {
       $scope.term = term.replace(/\#/, '');
-      console.log($scope.term);
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
       $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
-      $scope.getInstas();
-      $scope.getTweets();
+      getInstas();
+      getTweets();
       $scope.streamTweets();
       $scope.incomingTweets();
       $scope.changeActiveTemplate(1);
     };
 
-    $scope.changeActiveTemplate = function(index) {
+    var changeActiveTemplate = function(index) {
       $scope.templates.active = 'views/' + $scope.templates.available[index] + '.html';
       $scope.templates.activeIndex = index;
     };
 
     $scope.previousTemplate = function(){
       if( $scope.templates.activeIndex > 0 ) {
-        $scope.changeActiveTemplate( $scope.templates.activeIndex - 1) ;
+        changeActiveTemplate( $scope.templates.activeIndex - 1) ;
       }
     };
 
     $scope.nextTemplate = function(){
       if( $scope.templates.activeIndex < $scope.templates.available.length - 1 ) {
-        $scope.changeActiveTemplate( $scope.templates.activeIndex + 1 ) ;
+        changeActiveTemplate( $scope.templates.activeIndex + 1 ) ;
       }
     };
 
     $scope.parseDate = function(date){
       return Date.parse(date);
     };
+
+    // Private Functions to Get and Cycle Through Data
 
     var startCycleThroughTweets = function() {
       $interval(function(){
@@ -116,4 +127,36 @@ angular.module('newAngApp')
         }
       },  8000);
     };
+
+    // Refresh Instas Every 60s
+    var instaRefresh = function() {
+      $timeout(function(){ 
+        
+        var instaUpdateUrl = baseURL + 'instaLatest?term=' + $scope.term + '&maxTimestamp=' + maxInstaTimestamp();
+        console.log(instaUpdateUrl);
+
+        $http.get(instaUpdateUrl).success(function(data) {
+          for ( var i = 0; i < data.length; i++ ) {
+            $scope.instas.available.push(data[i]);
+          } 
+          console.log(data);
+          $scope.instas.activeIndex = 0;
+          $scope.instas.active = $scope.instas.available[0];
+          instaRefresh();
+        });
+
+      },  10000);
+    };
+
+    var maxInstaTimestamp = function() {
+      var maxTimestamp = 0;
+      var instas = $scope.instas.available;
+      for ( var i=0; i < instas.length; i++ ) {
+        if ( instas[i].timestamp > maxTimestamp ) {
+          maxTimestamp = instas[i].timestamp;
+        }
+      }
+      return maxTimestamp;
+    };
+
   }]);

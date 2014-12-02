@@ -1,7 +1,7 @@
 <div class="va-m centered_form span_10">
   <div class="col">
     <form name="hashtag_form" ng-submit="submit(term)">
-      <input class="lg plr-a fw-b ta-c whsc-l" name="hashtag" ng-model="term" placeholder="#AmazeMe15"/>
+      <input ng-click="term=''" class="lg plr-a fw-b ta-c whsc-l" name="hashtag" ng-model="term" placeholder="#SearchHashtag" value='term' />
       <input style="display: none;" class="lg" value="Go!" type="submit">
     </form>
   </div>
