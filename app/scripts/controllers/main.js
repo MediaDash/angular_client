@@ -8,7 +8,8 @@
  * Controller of the newAngApp
  */
 angular.module('newAngApp')
-  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', 'socket', function ($scope, $location, $http, $interval, socket) {
+
+  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', '$timeout', 'socket', function ($scope, $location, $http, $interval, $timeout, socket) {
 
     // Templates
     $scope.templates = {
@@ -16,6 +17,7 @@ angular.module('newAngApp')
       active: 'views/main.html',
       activeIndex: 0
     };
+    
     console.log($scope.templates);
 
     // Defaults
@@ -24,6 +26,12 @@ angular.module('newAngApp')
 
     // Models
     $scope.tweets = {
+      available: [],
+      activeIndex: 0,
+      active: null,
+    };
+
+    $scope.instas = {
       available: [],
       activeIndex: 0,
       active: null,
@@ -66,8 +74,9 @@ angular.module('newAngApp')
     $scope.getInstas = function() {
       $http.get($scope.instaUrl).success(function(data) {
         console.log(data);
-        $scope.instas = data;
+        $scope.instas.available = data;
         $scope.changeActiveTemplate(1);
+        instaRefresh();
       });
     };
 
@@ -105,6 +114,8 @@ angular.module('newAngApp')
       return Date.parse(date);
     };
 
+    // Private Functions to Get and Cycle Through Data
+
     var startCycleThroughTweets = function() {
       $interval(function(){
       if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
@@ -116,4 +127,23 @@ angular.module('newAngApp')
         }
       },  8000);
     };
+
+    // Refresh Instas Every 60s
+    var instaRefresh = function() {
+      $timeout(function(){ 
+        
+        var instaUpdateUrl = baseURL + 'instaRecent?term=' + $scope.term + '&maxTimestamp=' + $scope.instas.available[$scope.instas.available.length - 1].timestamp;
+        console.log(instaUpdateUrl);
+
+        $http.get(instaUpdateUrl).success(function(data) {
+          console.log(data);
+          $scope.instas.available.concat(data);
+          $scope.instas.activeIndex = 0;
+          $scope.instas.active = $scope.instas.available[0];
+          instaRefresh();
+        });
+
+      },  10000);
+    };
+
   }]);

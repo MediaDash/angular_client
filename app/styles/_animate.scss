@@ -22,13 +22,13 @@
 .driftUp {
   position: absolute;
   /* Firefox */
-  -moz-animation: driftY linear infinite;
+  -moz-animation: driftY linear infinite alternate;
   /* WebKit - Chrome and Safari */
-  -webkit-animation: driftY linear infinite;
+  -webkit-animation: driftY linear infinite alternate;
   /* Opera */
-  -o-animation: driftY linear infinite;
+  -o-animation: driftY linear infinite alternate;
   /* general syntax */
-  animation: driftY linear infinite;
+  animation: driftY linear infinite alternate;
 
   /* Firefox */
   -moz-animation-duration: 40s;
