@@ -20,7 +20,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class='stage' ng-controller="MainCtrl as posts">
+    <div class='stage'  ng-controller="MainCtrl as posts" style="background-color: {{ activeColor || 'gray' }}">
       <header>
         <div ng-show="term" class="ng-hide z-nnn h-50">
           <div class="span_1 fl-l bgc-b h-50 ta-l mtb-a"><a ng-click="previousTemplate()"> &lt; </a></div>

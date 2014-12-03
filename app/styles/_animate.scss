@@ -180,6 +180,7 @@
   animation: 1s boxOutAppearance;
 }
 
+<<<<<<< HEAD
 @keyframes boxOutAppearance {
   from {
     opacity: 1;
@@ -187,4 +188,37 @@
   to {
     opacity: 0;
   }
+=======
+.css-class-remove.css-class-remove-active {
+  font-size:1.0em;
+  color:black;
+}
+
+.tweetstack > div {
+  position: absolute;
+  width: 1000px;
+  height: 100%;
+}
+
+.tweetstack.ng-enter,
+.tweetstack.ng-leave {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.tweetstack.ng-enter {
+  left: -100%;
+}
+
+.tweetstack.ng-enter.ng-enter-active {
+  left: 0%;
+}
+
+.tweetstack.ng-leave {
+  left: 0%;
+}
+
+.tweetstack.ng-leave.ng-leave-active {
+  left: 100%;
+>>>>>>> zoom on tweets
 }
