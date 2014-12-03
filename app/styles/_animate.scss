@@ -188,3 +188,21 @@
     opacity: 0;
   }
 }
+
+.css-class-remove.css-class-remove-active {
+  font-size:1.0em;
+  color:black;
+}
+
+.tweetstack.ng-enter,
+.tweetstack.ng-leave {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.tweet_card.ng-leave {
+  -webkit-animation-name:bounceOutDown;
+    -moz-animation-name:bounceOutDown;
+  -o-animation-name:bounceOutDown;
+  animation-name:bounceOutDown;
+}

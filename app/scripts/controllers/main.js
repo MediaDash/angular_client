@@ -22,9 +22,7 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-
-      available: ['main', 'many_instas', 'single_insta', 'archer_tweet', 'tweet'],
-    
+      available: ['main','twitter_single_card', 'many_instas', 'single_insta', 'archer_tweet'],
       active: 'views/main.html',
       activeIndex: 0
     };
@@ -41,12 +39,14 @@ angular.module('newAngApp')
       available: [],
       activeIndex: 0,
       active: null,
+      displayed: []
     };
 
     $scope.instas = {
       available: [],
       activeIndex: 0,
       active: null,
+      displayed: []
     };
 
     var getTweets = function() {
@@ -54,6 +54,7 @@ angular.module('newAngApp')
         $scope.tweets.available = data;
         $scope.tweets.activeIndex = 0;
         $scope.tweets.active = $scope.tweets.available[0];
+        console.log(data)
         startCycleThroughTweets();
       });
     };
@@ -135,11 +136,13 @@ angular.module('newAngApp')
       if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
         $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
         $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
+        $scope.tweets.displayed.pop();
+        $scope.tweets.displayed.push($scope.tweets.active);
         } else {
          $scope.tweets.activeIndex = 0;
          $scope.tweets.active = $scope.tweets.available[0];
         }
-      },  8000);
+      },  5000);
     };
 
     var rotateTemplate = function() {
@@ -154,7 +157,7 @@ angular.module('newAngApp')
       $interval(function(){
         rotateTemplate();
       }, 30000);
-    }
+    };
 
     var cycleThroughInstas = function(){
       $timeout(function(){
