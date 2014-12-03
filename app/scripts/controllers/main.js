@@ -46,6 +46,7 @@ angular.module('newAngApp')
       available: [],
       activeIndex: 0,
       active: null,
+      displayed: []
     };
 
     var getTweets = function() {
@@ -103,7 +104,7 @@ angular.module('newAngApp')
       // $scope.incomingTweets();
       changeActiveTemplate(1);
       cycleThroughInstas();
-      // cycleThroughViews();
+      cycleThroughViews();
     };
 
     var changeActiveTemplate = function(index) {
@@ -155,8 +156,8 @@ angular.module('newAngApp')
     var cycleThroughViews = function(){
       $interval(function(){
         rotateTemplate();
-      }, 10000);
-    }
+      }, 30000);
+    };
 
     var cycleThroughInstas = function(){
       $timeout(function(){

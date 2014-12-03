@@ -46,21 +46,24 @@ header {
   text-align: center;
 }
 
-.card{
-  background-color: aliceblue;
-  border-radius: 10px;
-  opacity: .9;
-}
-
 .tweet_card{
   padding: 5px;
   position: relative;
-  display: inline-block;
-  height: 80%;
+  width: 100%;
+}
+
+.card{
+  background-color: aliceblue;
+  border-radius: 10px;
+  opacity: .8;
+  position: absolute;
+  left: 30px;
+  right: 30px;
 }
 
 .tweet_image{
   text-align: center;
+  opacity: 1;
 }
 
 .tweet_avatar {

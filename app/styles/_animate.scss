@@ -194,30 +194,15 @@
   color:black;
 }
 
-.tweetstack > div {
-  position: absolute;
-  width: 1000px;
-  height: 100%;
-}
-
 .tweetstack.ng-enter,
 .tweetstack.ng-leave {
   -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 
-.tweetstack.ng-enter {
-  left: -100%;
-}
-
-.tweetstack.ng-enter.ng-enter-active {
-  left: 0%;
-}
-
-.tweetstack.ng-leave {
-  left: 0%;
-}
-
-.tweetstack.ng-leave.ng-leave-active {
-  left: 100%;
+.tweet_card.ng-leave {
+  -webkit-animation-name:bounceOutDown;
+    -moz-animation-name:bounceOutDown;
+  -o-animation-name:bounceOutDown;
+  animation-name:bounceOutDown;
 }
