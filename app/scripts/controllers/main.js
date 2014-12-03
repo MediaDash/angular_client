@@ -75,7 +75,7 @@ angular.module('newAngApp')
       var index = 0;
       socket.on('tweet', function(data){
         streamedTweets.push(data[0]);
-        // $scope.streamedTweet = $scope.streamedTweets[index];
+        $scope.streamedTweet = streamedTweets[index];
       });
       $interval(function(){
           $scope.streamedTweet = streamedTweets[index];
@@ -100,6 +100,7 @@ angular.module('newAngApp')
     $scope.submit = function(term) {
       socket.on('tweets', function(msg){
         console.log(msg);
+        console.log('HIT HERE');
       });
       $scope.term = term.replace(/\#/, '');
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
