@@ -19,7 +19,9 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-      available: ['main', 'archer_tweet', 'instas', 'tweet', 'tweet_socket'],
+
+      available: ['main', 'single_insta', 'archer_tweet', 'instas', 'tweet'],
+    
       active: 'views/main.html',
       activeIndex: 0
     };
@@ -97,6 +99,8 @@ angular.module('newAngApp')
       // $scope.streamTweets();
       // $scope.incomingTweets();
       changeActiveTemplate(1);
+      cycleThroughInstas();
+      cycleThroughViews();
     };
 
     var changeActiveTemplate = function(index) {
@@ -135,6 +139,28 @@ angular.module('newAngApp')
       },  8000);
     };
 
+    var rotateTemplate = function() {
+      if( $scope.templates.activeIndex > 1 ) {
+        changeActiveTemplate( $scope.templates.activeIndex - 1);
+      } else {
+        $scope.templates.activeIndex = $scope.templates.available.length - 1;
+      }
+    };
+
+    var cycleThroughViews = function(){
+      $interval(function(){
+        rotateTemplate();
+      }, 30000);
+    }
+
+    var cycleThroughInstas = function(){
+      $interval(function(){
+        $scope.instas.active = sampleFromCollection($scope.instas.available);
+      }, 5000);
+    }
+
+
+
     // Refresh Instas Every 60s
     var instaRefresh = function() {
       $timeout(function(){ 
@@ -152,7 +178,7 @@ angular.module('newAngApp')
           instaRefresh();
         });
 
-      },  60000);
+      },  40000);
     };
 
     var maxInstaTimestamp = function() {
@@ -173,5 +199,7 @@ angular.module('newAngApp')
     var sampleFromCollection = function(items) {
       return items[Math.floor(Math.random()*items.length)];
     };
+
+
 
   }]);
