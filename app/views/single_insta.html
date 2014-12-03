@@ -1,0 +1,55 @@
+  <script type="text/javascript">
+ 
+      $(document).ready(function(){
+        console.log("im ready")
+        $('.lightbox').click(function(){
+          console.log("im the lightbox function")
+          $('.backdrop, .box').animate({'opacity':'.50'}, 300, 'linear');
+          $('.box').animate({'opacity':'1.00'}, 300, 'linear');
+          $('.backdrop, .box').css('display', 'block');
+        });
+ 
+        $('.close').click(function(){
+          close_box();
+        });
+ 
+        $('.backdrop').click(function(){
+          close_box();
+        });
+ 
+      });
+ 
+      function close_box()
+      {
+        $('.backdrop, .box').animate({'opacity':'0'}, 300, 'linear', function(){
+          $('.backdrop, .box').css('display', 'none');
+        });
+      }
+ 
+    </script>
+
+<div class="module lightbox"><p>single insta</p>
+  <figure class='small animate-repeat lightbox' ng-repeat="insta in instas.available">
+   <a href="#" class="lightbox">
+      <img ng-src="{{ insta.image }}" alt="{{ insta.text }}">
+      <div class="backdrop">
+      </div>
+
+   </a>
+
+    <figcaption class="transition-050 opacity85">
+      <a href="">
+        <strong class="text transition-050 title">{{ insta.username }}</strong>
+        <span class="text transition-050 desc">{{ insta.text }}</span>
+      </a>
+    </figcaption>
+  </figure>
+</div>
+
+
+<div class="box">
+  <img ng-src="{{ instas.active.image }}">
+</div>
+  
+
+

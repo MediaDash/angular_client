@@ -19,7 +19,9 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-      available: ['main', 'archer_tweet', 'instas', 'tweet', 'tweet_socket'],
+
+      available: ['main', 'single_insta', 'archer_tweet', 'instas', 'tweet', 'tweet_socket'],
+    
       active: 'views/main.html',
       activeIndex: 0
     };
@@ -97,6 +99,7 @@ angular.module('newAngApp')
       // $scope.streamTweets();
       // $scope.incomingTweets();
       changeActiveTemplate(1);
+      // cycleThroughViews();
     };
 
     var changeActiveTemplate = function(index) {
@@ -134,6 +137,21 @@ angular.module('newAngApp')
         }
       },  8000);
     };
+
+
+    var cycleThroughViews = function(){
+      $interval(function(){
+        $scope.nextTemplate();
+      }, 8000);
+    }
+
+    var cycleThroughInstas = function(){
+      $interval(function(){
+        $scope.nextActiveInsta();
+      }, 8000);
+    }
+
+
 
     // Refresh Instas Every 60s
     var instaRefresh = function() {
