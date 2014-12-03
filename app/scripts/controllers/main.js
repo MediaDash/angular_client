@@ -20,7 +20,7 @@ angular.module('newAngApp')
     // Templates
     $scope.templates = {
 
-      available: ['main', 'single_insta', 'archer_tweet', 'instas', 'tweet', 'tweet_socket'],
+      available: ['main', 'single_insta', 'archer_tweet', 'instas', 'tweet'],
     
       active: 'views/main.html',
       activeIndex: 0
@@ -100,7 +100,7 @@ angular.module('newAngApp')
       // $scope.incomingTweets();
       changeActiveTemplate(1);
       cycleThroughInstas();
-      // cycleThroughViews();
+      cycleThroughViews();
     };
 
     var changeActiveTemplate = function(index) {
@@ -139,11 +139,18 @@ angular.module('newAngApp')
       },  8000);
     };
 
+    var rotateTemplate = function() {
+      if( $scope.templates.activeIndex > 1 ) {
+        changeActiveTemplate( $scope.templates.activeIndex - 1);
+      } else {
+        $scope.templates.activeIndex = $scope.templates.available.length - 1;
+      }
+    };
 
     var cycleThroughViews = function(){
       $interval(function(){
-        $scope.nextTemplate();
-      }, 8000);
+        rotateTemplate();
+      }, 30000);
     }
 
     var cycleThroughInstas = function(){
