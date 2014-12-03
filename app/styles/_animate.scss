@@ -126,22 +126,65 @@
   from { opacity:1; }
   to { opacity:0; }
 }
-
-
-.css-class-add, .css-class-remove {
-  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) $time;
-  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) $time;
-  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) $time;
-  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) $time;
+.backdrop.appear {
+  opacity: .7;
 }
 
-.css-class,
-.css-class-add.css-class-add-active {
-  color: red;
-  font-size:3em;
+.box.appear {
+  opacity: 1;
 }
 
-.css-class-remove.css-class-remove-active {
-  font-size:1.0em;
-  color:black;
+.backdrop.appear-add {
+  -webkit-animation: 1s backdropAppearance;
+  animation: 1s backdropAppearance;
+}
+
+@keyframes backdropAppearance {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: .7;
+  }
+}
+
+.box.appear-add {
+  -webkit-animation: 1s boxAppearance;
+  animation: 1s boxAppearance;
+}
+
+@keyframes boxAppearance {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.backdrop.appear-remove {
+  -webkit-animation: 1s backdropOutAppearance;
+  animation: 1s backdropOutAppearance;
+}
+
+@keyframes backdropOutAppearance {
+  from {
+    opacity: .7;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.box.appear-remove {
+  -webkit-animation: 1s boxOutAppearance;
+  animation: 1s boxOutAppearance;
+}
+
+@keyframes boxOutAppearance {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
