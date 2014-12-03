@@ -16,12 +16,12 @@
 			</div>
 		</div>
 
-		<div class="row pb-lg">
+		<div class="row pb-l">
 			<div class=" span_10 mlr-a ">
 				<p class="retweets fl-l">Retweeted {{ tweets.active.reshares}}
 				 Favorites {{tweets.active.likes}}</p>
 				<p class="time_stamp fl-r fz-lg">
-					{{ parseDate(tweets.active.timestamp) | date:'yyyy-MM-dd HH:mm:ss' }}
+					{{ parseDate(tweets.active.timestamp) | timeago }}
 				</p>
 			</div>
 		</div>

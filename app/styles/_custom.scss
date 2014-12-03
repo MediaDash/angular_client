@@ -46,21 +46,17 @@ header {
   text-align: center;
 }
 
-
-
 .card{
   background-color: aliceblue;
+  border-radius: 10px;
+  opacity: .9;
 }
 
 .tweet_image{
   text-align: center;
 }
 
-.tweet_text{
-  color: dodgerblue;
-}
-
-.tweet_avatar{
+.tweet_avatar {
   border-radius: 5%;
 }
 
