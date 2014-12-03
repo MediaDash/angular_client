@@ -99,6 +99,7 @@ angular.module('newAngApp')
       // $scope.streamTweets();
       // $scope.incomingTweets();
       changeActiveTemplate(1);
+      cycleThroughInstas();
       // cycleThroughViews();
     };
 
@@ -147,8 +148,8 @@ angular.module('newAngApp')
 
     var cycleThroughInstas = function(){
       $interval(function(){
-        $scope.nextActiveInsta();
-      }, 8000);
+        $scope.instas.active = sampleFromCollection($scope.instas.available);
+      }, 5000);
     }
 
 
@@ -170,7 +171,7 @@ angular.module('newAngApp')
           instaRefresh();
         });
 
-      },  60000);
+      },  40000);
     };
 
     var maxInstaTimestamp = function() {
@@ -191,5 +192,7 @@ angular.module('newAngApp')
     var sampleFromCollection = function(items) {
       return items[Math.floor(Math.random()*items.length)];
     };
+
+
 
   }]);
