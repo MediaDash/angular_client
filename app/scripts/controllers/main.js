@@ -18,10 +18,12 @@ angular.module('newAngApp')
                          '445566',
                          'FF8300'];
 
+    $rootScope.boxChange = false;
+
     // Templates
     $scope.templates = {
 
-      available: ['main', 'single_insta', 'archer_tweet', 'instas', 'tweet'],
+      available: ['main', 'many_instas', 'single_insta', 'archer_tweet', 'tweet'],
     
       active: 'views/main.html',
       activeIndex: 0
@@ -155,12 +157,34 @@ angular.module('newAngApp')
     }
 
     var cycleThroughInstas = function(){
-      $interval(function(){
+      $timeout(function(){
         $scope.instas.active = sampleFromCollection($scope.instas.available);
+        $rootScope.boxChange = true;
+        $timeout(function(){
+          $rootScope.boxChange = false;
+          cycleThroughInstas();
+        }, 5000);
       }, 5000);
-    }
+    };
 
+  // TRY TO USE DELAY/ COMPLETE ON ANIMATE TO START TIMER AFTER ANIMATION COMPLETE
+  //   function selectInsta() {
+  //     setTimeout(function() {
+  //       $('.backdrop, .box').animate({'opacity':'.70'}, 300, 'linear');
+  //       $('.box').animate({'opacity':'1.00'}, 300, 'linear');
+  //       $('.backdrop, .box').css('display', 'block');
+  //       setTimeout(function() {
+  //         closeBox();
+  //       }, 4000);
+  //       selectInsta();
+  //   }, 5000);
+  // });
 
+    // var closeBox = function() {
+    //   $('.backdrop, .box').animate({'opacity':'0'}, 300, 'linear', function(){
+    //   $('.backdrop, .box').css('display', 'none');
+    //   })
+    // };
 
     // Refresh Instas Every 60s
     var instaRefresh = function() {
@@ -179,7 +203,7 @@ angular.module('newAngApp')
           instaRefresh();
         });
 
-      },  40000);
+      },  30000);
     };
 
     var maxInstaTimestamp = function() {
@@ -200,7 +224,5 @@ angular.module('newAngApp')
     var sampleFromCollection = function(items) {
       return items[Math.floor(Math.random()*items.length)];
     };
-
-
 
   }]);
