@@ -10,11 +10,19 @@
 
 angular.module('newAngApp')
 
-  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', '$timeout', function ($scope, $location, $http, $interval, $timeout) {
+  .controller('MainCtrl', ['$rootScope', '$scope', '$location', '$http', '$interval', '$timeout', function ($rootScope, $scope, $location, $http, $interval, $timeout) {
+
+    $rootScope.colors = ['#225533',
+                         '#66eeff',
+                         '#eecc66',
+                         '445566',
+                         'FF8300'];
 
     // Templates
     $scope.templates = {
-      available: ['main', 'instas', 'tweet', 'tweet_socket'],
+
+      available: ['main', 'single_insta', 'archer_tweet', 'instas', 'tweet'],
+    
       active: 'views/main.html',
       activeIndex: 0
     };
@@ -92,6 +100,8 @@ angular.module('newAngApp')
       // $scope.streamTweets();
       // $scope.incomingTweets();
       changeActiveTemplate(1);
+      cycleThroughInstas();
+      cycleThroughViews();
     };
 
     var changeActiveTemplate = function(index) {
@@ -119,6 +129,7 @@ angular.module('newAngApp')
 
     var startCycleThroughTweets = function() {
       $interval(function(){
+      changeBackground();
       if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
         $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
         $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
@@ -128,6 +139,28 @@ angular.module('newAngApp')
         }
       },  8000);
     };
+
+    var rotateTemplate = function() {
+      if( $scope.templates.activeIndex > 1 ) {
+        changeActiveTemplate( $scope.templates.activeIndex - 1);
+      } else {
+        $scope.templates.activeIndex = $scope.templates.available.length - 1;
+      }
+    };
+
+    var cycleThroughViews = function(){
+      $interval(function(){
+        rotateTemplate();
+      }, 30000);
+    }
+
+    var cycleThroughInstas = function(){
+      $interval(function(){
+        $scope.instas.active = sampleFromCollection($scope.instas.available);
+      }, 5000);
+    }
+
+
 
     // Refresh Instas Every 60s
     var instaRefresh = function() {
@@ -146,7 +179,7 @@ angular.module('newAngApp')
           instaRefresh();
         });
 
-      },  60000);
+      },  40000);
     };
 
     var maxInstaTimestamp = function() {
@@ -159,5 +192,15 @@ angular.module('newAngApp')
       }
       return maxTimestamp;
     };
+
+    var changeBackground = function() {
+      $rootScope.activeColor = sampleFromCollection($rootScope.colors);
+    };
+
+    var sampleFromCollection = function(items) {
+      return items[Math.floor(Math.random()*items.length)];
+    };
+
+
 
   }]);
