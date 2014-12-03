@@ -10,7 +10,9 @@
 angular.module('mySocket', [])
   .factory('socket', function ($rootScope) {
   // var socket = io.connect('http://mediadashapi.herokuapp.com:5000');
-  var socket = io.connect('http://salty-journey-1875.herokuapp.com');
+  console.log('nuh uh');
+  // var socket = io.connect('http://localhost:9393');
+    var socket = io.connect('http://salty-journey-1875.herokuapp.com:80/');
     return {
       on: function (eventName, callback) {
           socket.on(eventName, function () {

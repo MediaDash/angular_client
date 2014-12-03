@@ -36,7 +36,7 @@ angular.module('newAngApp')
     $scope.term = '';
     // var baseURL = 'http://mediadashapi.herokuapp.com/';
     var baseURL = 'http://salty-journey-1875.herokuapp.com/';
-    var testURL = 'http://localhost:9393/';
+    // var baseURL = 'http://localhost:9393/';
 
     // Models
     $scope.tweets = {
@@ -98,6 +98,9 @@ angular.module('newAngApp')
     };
 
     $scope.submit = function(term) {
+      socket.on('tweets', function(msg){
+        console.log(msg);
+      });
       $scope.term = term.replace(/\#/, '');
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
