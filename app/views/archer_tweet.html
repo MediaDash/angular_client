@@ -4,7 +4,6 @@
 </div>
 <div class="row">
 	<div class="card span_10 mlr-a bgc-w" >
-<input type="range" min="0" max="1000" step="1" value="0">
 		<div class="row  pt-xl">
 			<div class=" user_info span_10 mlr-a">
 				<img class="fl-l tweet_avatar span_2" ng-src="{{ tweets.active.userProfilePic }}">
@@ -37,12 +36,3 @@ turn into a show tweet directive(create tweet directive to show new tweets)
 -->
 
 <!-- 1 write eleement directive (a way to call something) -->
-<script>
-d3.select("input").transition()
-    .duration(7500)
-    .tween("value", function() {
-      var i = d3.interpolate(this.value, this.max);
-      return function(t) { this.value = i(t); };
-    });
-
-</script>
