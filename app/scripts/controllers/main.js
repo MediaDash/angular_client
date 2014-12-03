@@ -7,6 +7,7 @@
  * # MainCtrl
  * Controller of the newAngApp
  */
+
 angular.module('newAngApp')
 
   .controller('MainCtrl', ['$rootScope', '$scope', '$location', '$http', '$interval', '$timeout', function ($rootScope, $scope, $location, $http, $interval, $timeout) {
@@ -17,10 +18,12 @@ angular.module('newAngApp')
                          '445566',
                          'FF8300'];
 
+    $rootScope.boxChange = false;
+
     // Templates
     $scope.templates = {
 
-      available: ['main', 'single_insta', 'archer_tweet', 'instas', 'tweet'],
+      available: ['main', 'many_instas', 'single_insta', 'archer_tweet', 'tweet'],
     
       active: 'views/main.html',
       activeIndex: 0
@@ -154,12 +157,15 @@ angular.module('newAngApp')
     }
 
     var cycleThroughInstas = function(){
-      $interval(function(){
+      $timeout(function(){
         $scope.instas.active = sampleFromCollection($scope.instas.available);
+        $rootScope.boxChange = true;
+        $timeout(function(){
+          $rootScope.boxChange = false;
+          cycleThroughInstas();
+        }, 5000);
       }, 5000);
-    }
-
-
+    };
 
     // Refresh Instas Every 60s
     var instaRefresh = function() {
@@ -178,7 +184,7 @@ angular.module('newAngApp')
           instaRefresh();
         });
 
-      },  40000);
+      },  30000);
     };
 
     var maxInstaTimestamp = function() {
@@ -199,7 +205,5 @@ angular.module('newAngApp')
     var sampleFromCollection = function(items) {
       return items[Math.floor(Math.random()*items.length)];
     };
-
-
 
   }]);
