@@ -9,7 +9,13 @@
  */
 angular.module('newAngApp')
 
-  .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', '$timeout', function ($scope, $location, $http, $interval, $timeout) {
+  .controller('MainCtrl', ['$rootScope', '$scope', '$location', '$http', '$interval', '$timeout', function ($rootScope, $scope, $location, $http, $interval, $timeout) {
+
+    $rootScope.colors = ['#225533',
+                         '#66eeff',
+                         '#eecc66',
+                         '445566',
+                         'FF8300'];
 
     // Templates
     $scope.templates = {
@@ -118,6 +124,7 @@ angular.module('newAngApp')
 
     var startCycleThroughTweets = function() {
       $interval(function(){
+      changeBackground();
       if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
         $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
         $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
@@ -157,6 +164,14 @@ angular.module('newAngApp')
         }
       }
       return maxTimestamp;
+    };
+
+    var changeBackground = function() {
+      $rootScope.activeColor = sampleFromCollection($rootScope.colors);
+    };
+
+    var sampleFromCollection = function(items) {
+      return items[Math.floor(Math.random()*items.length)];
     };
 
   }]);
