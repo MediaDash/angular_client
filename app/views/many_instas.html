@@ -1,26 +1,3 @@
-<script type="text/javascript">
-  
-  // $(document).ready(
-  //   function selectInsta() {
-  //     setTimeout(function() {
-  //       $('.backdrop, .box').animate({'opacity':'.70'}, 300, 'linear');
-  //       $('.box').animate({'opacity':'1.00'}, 300, 'linear');
-  //       $('.backdrop, .box').css('display', 'block');
-  //       setTimeout(function() {
-  //         closeBox();
-  //       }, 4000);    
-  //       selectInsta();
-  //   }, 5000);
-  // });
-
-  // function closeBox() {
-  //   $('.backdrop, .box').animate({'opacity':'0'}, 300, 'linear', function(){
-  //     $('.backdrop, .box').css('display', 'none');
-  //   });
-  // }
-
-</script>
-
 <div class="backdrop" ng-class="{'appear' : boxChange} "></div>
 <div class="module lightbox driftUp">
   <figure class='small animate-repeat lightbox' ng-repeat="insta in instas.available">
@@ -38,9 +15,8 @@
 </div>
 
 <div class="box" ng-class="{'appear' : boxChange} ">
-  <img ng-src="{{ instas.active.image }}">
+  <img class="imageSize" ng-src="{{ instas.active.image }}">
   <img class="single_insta_prof_pic pos-r span_2" ng-src="{{ instas.active.userProfilePic }}">
   <strong class="text transition-050 single_insta_title pos-r fz-xl span_10">{{ instas.active.username }}</strong>
   <p>{{insta.title}}</p>
 </div>
-  

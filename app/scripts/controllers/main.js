@@ -167,25 +167,6 @@ angular.module('newAngApp')
       }, 5000);
     };
 
-  // TRY TO USE DELAY/ COMPLETE ON ANIMATE TO START TIMER AFTER ANIMATION COMPLETE
-  //   function selectInsta() {
-  //     setTimeout(function() {
-  //       $('.backdrop, .box').animate({'opacity':'.70'}, 300, 'linear');
-  //       $('.box').animate({'opacity':'1.00'}, 300, 'linear');
-  //       $('.backdrop, .box').css('display', 'block');
-  //       setTimeout(function() {
-  //         closeBox();
-  //       }, 4000);
-  //       selectInsta();
-  //   }, 5000);
-  // });
-
-    // var closeBox = function() {
-    //   $('.backdrop, .box').animate({'opacity':'0'}, 300, 'linear', function(){
-    //   $('.backdrop, .box').css('display', 'none');
-    //   })
-    // };
-
     // Refresh Instas Every 60s
     var instaRefresh = function() {
       $timeout(function(){ 
