@@ -1,0 +1,51 @@
+<!-- this view does not render an image from twitter -->
+<div class="rotatingbackground" style="background-color: {{ activeColor || 'gray' }}">
+<div class="row" style="height: 100px;">
+</div>
+<div class="row">
+	<div class="card span_10 mlr-a bgc-w" >
+		<div class="row  pt-xl">
+			<div class=" user_info span_10 mlr-a">
+				<img class="fl-l tweet_avatar span_2" ng-src="{{ tweets.active.userProfilePic }}">
+				<p class="fl-l fz-xl ">@ {{ tweets.active.username }}</p>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class=" tweet_text span_10 mlr-a ">
+				<p class="ta-c fz-xl ">{{ tweets.active.text }}</p>
+			</div>
+		</div>
+
+		<div class="row pb-l">
+			<div class=" span_10 mlr-a ">
+				<p class="retweets fl-l">Retweeted {{ tweets.active.reshares}}
+				 Favorites {{tweets.active.likes}}</p>
+				<p class="time_stamp fl-r fz-lg">
+					{{ parseDate(tweets.active.timestamp) | timeago }}
+				</p>
+			</div>
+		</div>
+	</div> 
+</div>
+</div>
+
+<!-- 
+define directive outside of controller
+turn into a show tweet directive(create tweet directive to show new tweets)
+-->
+
+<!-- 1 write eleement directive (a way to call something) -->
+
+
+
+
+
+
+
+
+
+
+
+
+
