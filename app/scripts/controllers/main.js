@@ -22,7 +22,7 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-      available: ['main','twitter_single_card', 'many_instas', 'single_insta', 'archer_tweet', 'tweet'],
+      available: ['main','twitter_single_card', 'many_instas', 'single_insta', 'archer_tweet'],
       active: 'views/main.html',
       activeIndex: 0
     };
