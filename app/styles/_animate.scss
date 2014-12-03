@@ -145,3 +145,10 @@
   font-size:1.0em;
   color:black;
 }
+
+.grow {
+  -webkit-transform:scale(2);
+  -moz-transform:scale(2);
+  -o-transform:scale(2);
+  transform:scale(2);
+}

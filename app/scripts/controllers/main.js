@@ -7,6 +7,7 @@
  * # MainCtrl
  * Controller of the newAngApp
  */
+
 angular.module('newAngApp')
 
   .controller('MainCtrl', ['$scope', '$location', '$http', '$interval', '$timeout', function ($scope, $location, $http, $interval, $timeout) {
