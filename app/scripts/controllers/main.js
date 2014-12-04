@@ -42,7 +42,7 @@ angular.module('newAngApp')
       available: [],
       activeIndex: 0,
       active: null,
-      displayed: [],
+      displayed: []
     };
 
     $scope.instas = {
@@ -180,14 +180,14 @@ angular.module('newAngApp')
     };
 
 
-    var fuse = function() {
-      d3.select("input").transition()
-      .duration(4500)
-      .tween("value", function() {
-        var i = d3.interpolate(this.value, this.max);
-        return function(t) { this.value = i(t); };
-      });
-    }
+    // var fuse = function() {
+    //   d3.select("input").transition()
+    //   .duration(4500)
+    //   .tween("value", function() {
+    //     var i = d3.interpolate(this.value, this.max);
+    //     return function(t) { this.value = i(t); };
+    //   });
+    // }
 
     // Refresh Instas Every 60s
     var instaRefresh = function() {
