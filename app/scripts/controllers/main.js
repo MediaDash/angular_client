@@ -15,8 +15,11 @@ angular.module('newAngApp')
     $rootScope.colors = ['#225533',
                          '#66eeff',
                          '#eecc66',
-                         '445566',
-                         'FF8300'];
+                         '#445566',
+                         '#FF8300',
+                         '#51EE59',
+                         '#FFB800',
+                         '#EED651'];
 
     $rootScope.boxChange = false;
 
@@ -131,16 +134,22 @@ angular.module('newAngApp')
     // Private Functions to Get and Cycle Through Data
 
     var startCycleThroughTweets = function() {
+      changeBackground();
+      $scope.tweets.activeIndex = 0;
+      $scope.tweets.active = $scope.tweets.available[0];
+      $scope.tweets.displayed.push($scope.tweets.active);
       $interval(function(){
       changeBackground();
       if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
+        $scope.tweets.displayed.pop();
         $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
         $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
-        $scope.tweets.displayed.pop();
         $scope.tweets.displayed.push($scope.tweets.active);
         } else {
-         $scope.tweets.activeIndex = 0;
-         $scope.tweets.active = $scope.tweets.available[0];
+        $scope.tweets.displayed.pop();
+        $scope.tweets.activeIndex = 0;
+        $scope.tweets.active = $scope.tweets.available[0];
+        $scope.tweets.displayed.push($scope.tweets.active);
         }
       },  5000);
     };
