@@ -10,7 +10,7 @@
 
 angular.module('newAngApp')
 
-  .controller('MainCtrl', ['$rootScope', '$scope', '$location', '$http', '$interval', '$timeout', function ($rootScope, $scope, $location, $http, $interval, $timeout) {
+  .controller('MainCtrl', ['$rootScope', '$scope', '$location', '$http', '$interval', '$timeout', 'socket', function ($rootScope, $scope, $location, $http, $interval, $timeout, socket) {
 
     $rootScope.colors = ['#225533',
                          '#66eeff',
@@ -25,17 +25,19 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta'],
+
+      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta', 'tweet_socket'],
       active: 'views/main.html',
       activeIndex: 0
     };
-    
+
     console.log($scope.templates);
 
     // Defaults
     $scope.term = '';
-    var baseURL = 'http://mediadashapi.herokuapp.com/';
-    var testURL = 'http://localhost:9393/';
+    // var baseURL = 'http://mediadashapi.herokuapp.com/';
+    var baseURL = 'http://salty-journey-1875.herokuapp.com/';
+    // var baseURL = 'http://localhost:9393/';
 
     // Models
     $scope.tweets = {
@@ -74,7 +76,7 @@ angular.module('newAngApp')
       var index = 0;
       socket.on('tweet', function(data){
         streamedTweets.push(data[0]);
-        // $scope.streamedTweet = $scope.streamedTweets[index];
+        $scope.streamedTweet = streamedTweets[index];
       });
       $interval(function(){
           $scope.streamedTweet = streamedTweets[index];
@@ -97,14 +99,18 @@ angular.module('newAngApp')
     };
 
     $scope.submit = function(term) {
+      socket.on('tweets', function(msg){
+        console.log(msg);
+        console.log('HIT HERE');
+      });
       $scope.term = term.replace(/\#/, '');
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
-      // $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
+      $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
       getInstas();
       getTweets();
-      // $scope.streamTweets();
-      // $scope.incomingTweets();
+      $scope.streamTweets();
+      $scope.incomingTweets();
       changeActiveTemplate(1);
       cycleThroughInstas();
       cycleThroughViews();
@@ -191,15 +197,15 @@ angular.module('newAngApp')
 
     // Refresh Instas Every 60s
     var instaRefresh = function() {
-      $timeout(function(){ 
-        
+      $timeout(function(){
+
         var instaUpdateUrl = baseURL + 'instaLatest?term=' + $scope.term + '&maxTimestamp=' + maxInstaTimestamp();
         console.log(instaUpdateUrl);
 
         $http.get(instaUpdateUrl).success(function(data) {
           for ( var i = 0; i < data.length; i++ ) {
             $scope.instas.available.push(data[i]);
-          } 
+          }
           console.log(data);
           $scope.instas.activeIndex = 0;
           $scope.instas.active = $scope.instas.available[0];
