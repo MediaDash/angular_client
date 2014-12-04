@@ -1,5 +1,6 @@
 body {
   font-family: 'Roboto Slab', sans-serif;
+  background-color: gray;
 }
 
 header {
@@ -40,14 +41,36 @@ header {
 }
 
 .centered_form {
-  height: 200px;
-  width: 400px;
-  position: fixed;
+  position: relative;
+  width: 100%;
   top: 50%;
-  left: 50%;
+  height: 200px;
   margin-top: -100px;
-  margin-left: -200px;
   text-align: center;
+
+}
+
+input.ng-pristine {
+  box-shadow: 0 0 28px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+input.ng-touched {
+  box-shadow: 0 0 36px #51EE59;
+  border: 1px solid #51EE59;
+  outline: none;
+}
+
+input.ng-untouched:focus {
+  box-shadow: 0 0 36px #FFB800;
+  border: 1px solid #FFB800;
+  outline: none;
+}
+
+input.ng-dirty:focus {
+  box-shadow: 0 0 36px #EED651;
+  border: 1px solid #EED651;
+  outline: none;
 }
 
 .tweet_card{
