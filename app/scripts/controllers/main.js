@@ -25,7 +25,7 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta', 'tweet_socket'],
+      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta', 'tweet_socket_2'],
       active: 'views/main.html',
       activeIndex: 0
     };
@@ -35,7 +35,8 @@ angular.module('newAngApp')
       available: [],
       activeIndex: 0,
       active: null,
-      displayed: []
+      displayed: [],
+      live: []
     };
 
     $scope.instas = {
@@ -78,15 +79,20 @@ angular.module('newAngApp')
         streamedTweets.push(data[0]);
         $scope.streamedTweet = streamedTweets[index];
         $scope.tweets.available.push(data[0]);
-        console.log("Tweets available: " + $scope.tweets.available.length);
       });
       $interval(function(){
           $scope.streamedTweet = streamedTweets[index];
+          if ($scope.streamedTweet) {
+            $scope.tweets.live.pop();
+          }
           var lastObjectIndex = streamedTweets.indexOf($scope.streamedTweet);
           if ( lastObjectIndex === streamedTweets.length - 1 ) {
             index = lastObjectIndex;
           } else {
             index = lastObjectIndex + 1;
+          }
+          if ($scope.streamedTweet) {
+            $scope.tweets.live.push(streamedTweets[index]);
           }
         }, 5000);
     };
@@ -115,7 +121,7 @@ angular.module('newAngApp')
       $scope.incomingTweets();
       changeActiveTemplate(1);
       cycleThroughInstas();
-      cycleThroughViews();
+      // cycleThroughViews();
     };
 
     var changeActiveTemplate = function(index) {
@@ -214,7 +220,7 @@ angular.module('newAngApp')
           instaRefresh();
         });
 
-      },  30000);
+      },  10000);
     };
 
     var maxInstaTimestamp = function() {
