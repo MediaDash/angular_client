@@ -25,19 +25,10 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-
       available: ['main', 'many_instas', 'twitter_single_card', 'single_insta', 'tweet_socket'],
       active: 'views/main.html',
       activeIndex: 0
     };
-
-    console.log($scope.templates);
-
-    // Defaults
-    $scope.term = '';
-    // var baseURL = 'http://mediadashapi.herokuapp.com/';
-    var baseURL = 'http://salty-journey-1875.herokuapp.com/';
-    // var baseURL = 'http://localhost:9393/';
 
     // Models
     $scope.tweets = {
@@ -53,6 +44,15 @@ angular.module('newAngApp')
       active: null,
       displayed: []
     };
+
+    console.log($scope.templates);
+
+    // Defaults
+    $scope.term = '';
+    // var baseURL = 'http://mediadashapi.herokuapp.com/';
+    var baseURL = 'http://salty-journey-1875.herokuapp.com/';
+    // var baseURL = 'http://localhost:9393/';
+
 
     var getTweets = function() {
       $http.get($scope.tweetUrl).success(function(data) {
@@ -77,11 +77,13 @@ angular.module('newAngApp')
       socket.on('tweet', function(data){
         streamedTweets.push(data[0]);
         $scope.streamedTweet = streamedTweets[index];
+        $scope.tweets.available.push(data[0]);
+        console.log("Tweets available: " + $scope.tweets.available.length);
       });
       $interval(function(){
           $scope.streamedTweet = streamedTweets[index];
           var lastObjectIndex = streamedTweets.indexOf($scope.streamedTweet);
-          if (lastObjectIndex + 1 === streamedTweets.length) {
+          if ( lastObjectIndex === streamedTweets.length - 1 ) {
             index = lastObjectIndex;
           } else {
             index = lastObjectIndex + 1;
@@ -145,17 +147,17 @@ angular.module('newAngApp')
       $scope.tweets.active = $scope.tweets.available[0];
       $scope.tweets.displayed.push($scope.tweets.active);
       $interval(function(){
-      changeBackground();
-      if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
-        $scope.tweets.displayed.pop();
-        $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
-        $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
-        $scope.tweets.displayed.push($scope.tweets.active);
-        } else {
-        $scope.tweets.displayed.pop();
-        $scope.tweets.activeIndex = 0;
-        $scope.tweets.active = $scope.tweets.available[0];
-        $scope.tweets.displayed.push($scope.tweets.active);
+        changeBackground();
+        if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
+          $scope.tweets.displayed.pop();
+          $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
+          $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
+          $scope.tweets.displayed.push($scope.tweets.active);
+          } else {
+          $scope.tweets.displayed.pop();
+          $scope.tweets.activeIndex = 0;
+          $scope.tweets.active = $scope.tweets.available[0];
+          $scope.tweets.displayed.push($scope.tweets.active);
         }
       },  5000);
     };
