@@ -29,12 +29,13 @@ angular.module('newAngApp')
       active: 'views/main.html',
       activeIndex: 0
     };
-    
+
     console.log($scope.templates);
 
     // Defaults
     $scope.term = '';
-    var baseURL = 'http://mediadashapi.herokuapp.com/';
+    // var baseURL = 'http://mediadashapi.herokuapp.com/';
+    var baseURL = 'http://salty-journey-1875.herokuapp.com/';
     var testURL = 'http://localhost:9393/';
 
     // Models
@@ -100,7 +101,7 @@ angular.module('newAngApp')
       $scope.term = term.replace(/\#/, '');
       $scope.tweetUrl = baseURL + 'twitter?term=' + $scope.term;
       $scope.instaUrl = baseURL + 'insta?term=' + $scope.term;
-      // $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
+      $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
       getInstas();
       getTweets();
       // $scope.streamTweets();
@@ -191,15 +192,15 @@ angular.module('newAngApp')
 
     // Refresh Instas Every 60s
     var instaRefresh = function() {
-      $timeout(function(){ 
-        
+      $timeout(function(){
+
         var instaUpdateUrl = baseURL + 'instaLatest?term=' + $scope.term + '&maxTimestamp=' + maxInstaTimestamp();
         console.log(instaUpdateUrl);
 
         $http.get(instaUpdateUrl).success(function(data) {
           for ( var i = 0; i < data.length; i++ ) {
             $scope.instas.available.push(data[i]);
-          } 
+          }
           console.log(data);
           $scope.instas.activeIndex = 0;
           $scope.instas.active = $scope.instas.available[0];
