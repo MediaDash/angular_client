@@ -25,7 +25,7 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta', 'archer_tweet'],
+      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta'],
       active: 'views/main.html',
       activeIndex: 0
     };
@@ -57,7 +57,7 @@ angular.module('newAngApp')
         $scope.tweets.available = data;
         $scope.tweets.activeIndex = 0;
         $scope.tweets.active = $scope.tweets.available[0];
-        console.log(data)
+        console.log(data);
         startCycleThroughTweets();
       });
     };
