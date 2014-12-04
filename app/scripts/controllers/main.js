@@ -15,14 +15,17 @@ angular.module('newAngApp')
     $rootScope.colors = ['#225533',
                          '#66eeff',
                          '#eecc66',
-                         '445566',
-                         'FF8300'];
+                         '#445566',
+                         '#FF8300',
+                         '#51EE59',
+                         '#FFB800',
+                         '#EED651'];
 
     $rootScope.boxChange = false;
 
     // Templates
     $scope.templates = {
-      available: ['main','twitter_single_card', 'many_instas', 'single_insta', 'archer_tweet'],
+      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta', 'archer_tweet'],
       active: 'views/main.html',
       activeIndex: 0
     };
@@ -131,16 +134,22 @@ angular.module('newAngApp')
     // Private Functions to Get and Cycle Through Data
 
     var startCycleThroughTweets = function() {
+      changeBackground();
+      $scope.tweets.activeIndex = 0;
+      $scope.tweets.active = $scope.tweets.available[0];
+      $scope.tweets.displayed.push($scope.tweets.active);
       $interval(function(){
       changeBackground();
       if( $scope.tweets.activeIndex < $scope.tweets.available.length - 1 ) {
+        $scope.tweets.displayed.pop();
         $scope.tweets.activeIndex = $scope.tweets.activeIndex + 1;
         $scope.tweets.active = $scope.tweets.available[$scope.tweets.activeIndex];
-        $scope.tweets.displayed.pop();
         $scope.tweets.displayed.push($scope.tweets.active);
         } else {
-         $scope.tweets.activeIndex = 0;
-         $scope.tweets.active = $scope.tweets.available[0];
+        $scope.tweets.displayed.pop();
+        $scope.tweets.activeIndex = 0;
+        $scope.tweets.active = $scope.tweets.available[0];
+        $scope.tweets.displayed.push($scope.tweets.active);
         }
       },  5000);
     };
