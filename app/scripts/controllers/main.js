@@ -10,7 +10,7 @@
 
 angular.module('newAngApp')
 
-  .controller('MainCtrl', ['$rootScope', '$scope', '$location', '$http', '$interval', '$timeout', function ($rootScope, $scope, $location, $http, $interval, $timeout) {
+  .controller('MainCtrl', ['$rootScope', '$scope', '$location', '$http', '$interval', '$timeout', 'socket', function ($rootScope, $scope, $location, $http, $interval, $timeout, socket) {
 
     $rootScope.colors = ['#225533',
                          '#66eeff',
@@ -25,7 +25,8 @@ angular.module('newAngApp')
 
     // Templates
     $scope.templates = {
-      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta'],
+
+      available: ['main', 'many_instas', 'twitter_single_card', 'single_insta', 'tweet_socket'],
       active: 'views/main.html',
       activeIndex: 0
     };
@@ -108,8 +109,8 @@ angular.module('newAngApp')
       $scope.streamTweetUrl = baseURL + 'twitter_stream?term=' + $scope.term;
       getInstas();
       getTweets();
-      // $scope.streamTweets();
-      // $scope.incomingTweets();
+      $scope.streamTweets();
+      $scope.incomingTweets();
       changeActiveTemplate(1);
       cycleThroughInstas();
       cycleThroughViews();
