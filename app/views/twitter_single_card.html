@@ -2,9 +2,10 @@
 <div class="row" style="height: 100px;">
 </div>
 <div class="row tweet_card animated bounceInDown" ng-repeat="tweet in tweets.displayed">
-  <div class="card span_10 mlr-a bgc-w" >
+  <div class="card span_10 mlr-a bgc-w">
     <div class="row  pt-xl">
       <div class=" user_info span_10 mlr-a">
+        <input type="range" min="0" max="1000" step="1" value="0">
         <img class="fl-l tweet_avatar span_2" ng-src="{{ tweet.userProfilePic }}">
         <p class="fl-l fz-xl ">@ {{ tweet.username }}</p>
       </div>
@@ -28,5 +29,3 @@
   </div>
 </div>
 </div>
-
- 
