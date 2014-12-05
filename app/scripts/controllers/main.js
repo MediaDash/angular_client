@@ -51,8 +51,8 @@ angular.module('newAngApp')
     // Defaults
     $scope.term = '';
     // var baseURL = 'http://mediadashapi.herokuapp.com/';
-    var baseURL = 'http://salty-journey-1875.herokuapp.com/';
-    // var baseURL = 'http://localhost:9393/';
+    //var baseURL = 'http://salty-journey-1875.herokuapp.com/';
+    var baseURL = 'http://localhost:9393/';
 
 
     var getTweets = function() {
