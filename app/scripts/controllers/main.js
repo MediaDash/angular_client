@@ -36,8 +36,8 @@ angular.module('newAngApp')
     // Defaults
     $scope.term = '';
     // var baseURL = 'http://mediadashapi.herokuapp.com/';
-    var baseURL = 'http://salty-journey-1875.herokuapp.com/';
-    // var baseURL = 'http://localhost:9393/';
+    // var baseURL = 'http://salty-journey-1875.herokuapp.com/';
+    var baseURL = 'http://localhost:9393/';
 
     // Models
     $scope.tweets = {
@@ -53,6 +53,10 @@ angular.module('newAngApp')
       active: null,
       displayed: []
     };
+
+    socket.on('new_hashtag', function(term){
+      $scope.submit(term);
+    });
 
     var getTweets = function() {
       $http.get($scope.tweetUrl).success(function(data) {
