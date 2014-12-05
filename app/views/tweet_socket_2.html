@@ -1,0 +1,41 @@
+<div class="module live_tweets">
+<div class="row" style="height: 100px;">
+</div>
+<img class='loading' src='images/267.gif' ng-hide="tweets.live.length">
+<div ng-show="tweets.live.length" class="row tweet_card animated bounceInDown" ng-repeat="tweet in tweets.live">
+  <div class="card span_10 mlr-a bgc-w">
+    <div class="row  pt-xl">
+      <div class=" user_info span_10 mlr-a">
+        <img class="fl-l tweet_avatar span_2" ng-src="{{ tweet.userProfilePic }}">
+        <p class="fl-l fz-xl ">@{{ tweet.username }}</p>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class=" tweet_text span_10 mlr-a ">
+        <p class="ta-c fz-xl ">{{ tweet.text }}</p>
+      </div>
+    </div>
+
+
+  <!--   <div class="row ">
+      <div class=" tweet_text span_10 mlr-a ">
+        <img class="tweet_img" ng-src="{{ tweets.active.image}}">
+      </div>
+    </div> -->
+
+    <div class="row pb-l">
+      <div class=" span_10 mlr-a ">
+        <p class="retweets fl-l">Retweeted {{ tweet.reshares}}
+         Favorites {{tweet.likes}}</p>
+        <p class="time_stamp fl-r fz-lg">
+          {{ parseDate(tweet.timestamp) | timeago }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<h1 class="live_tweet_text" ng-hide="tweets.live.length" class="row">Tweet #{{ term }} to see it here!</p>
+<h1 class="live_tweet_text" ng-show="tweets.live.length" class="row">This was the most recent tweet with hashtag: #{{ term }}</p>
