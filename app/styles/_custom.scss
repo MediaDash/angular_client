@@ -87,6 +87,16 @@ input.ng-dirty:focus {
   width: 100%;
 }
 
+.tweet_img {
+  position: absolute;
+  right: 200px;
+  top: 20px;
+  width: 150px;
+  border-radius: 10px;
+  opacity: 1;
+  z-index: 9999;
+}
+
 .card{
   background-color: aliceblue;
   border-radius: 10px;
@@ -265,3 +275,5 @@ video {
   position: static;
   margin: 0px auto;
 }
+
+

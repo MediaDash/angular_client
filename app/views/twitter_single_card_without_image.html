@@ -1,9 +1,7 @@
-<div class="module live_tweets">
+<div class="module" style="background-color: {{ activeColor || 'gray' }}" >
 <div class="row" style="height: 100px;">
 </div>
-<img class='loading' src='images/267.gif' ng-hide="tweets.live.length">
-<div ng-show="tweets.live.length" class="row tweet_card animated bounceInDown" ng-repeat="tweet in tweets.live">
-  <image ng-show="tweet.image" class="tweet_img" ng-src="{{ tweet.image }}">
+<div class="row tweet_card animated bounceInDown" ng-repeat="tweet in tweets.displayed">
   <div class="card span_10 mlr-a bgc-w">
     <div class="row  pt-xl">
       <div class=" user_info span_10 mlr-a">
@@ -37,6 +35,3 @@
   </div>
 </div>
 </div>
-
-<h1 class="live_tweet_text" ng-hide="tweets.live.length" class="row">Tweet #{{ term }} to see it here!</p>
-<h1 class="live_tweet_text" ng-show="tweets.live.length" class="row">This was the most recent tweet with hashtag: #{{ term }}</p>
