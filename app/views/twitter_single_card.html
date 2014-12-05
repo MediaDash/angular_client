@@ -5,14 +5,14 @@
   <image ng-show="tweet.image" class="tweet_img" ng-src="{{ tweet.image }}">
   <div class="card span_10 mlr-a bgc-w">
     <div class="row pt-xl">
-      <div class=" user_info span_10 mlr-a">
+      <div class="user_info span_10 mlr-a">
         <img class="fl-l tweet_avatar span_2" ng-src="{{ tweet.userProfilePic }}">
         <p class="fl-l fz-xl ">@{{ tweet.username }}</p>
       </div>
     </div>
 
     <div class="row ">
-      <div ng-hide="tweet.image" class=" tweet_text span_10 mlr-a ">
+      <div class=" tweet_text span_10 mlr-a ">
         <p  class="ta-c fz-xl ">{{ tweet.text }}</p>
       </div>
     </div>
@@ -28,7 +28,7 @@
       <div class=" span_10 mlr-a ">
         <p class="retweets fl-l">Retweeted {{ tweet.reshares}}
          Favorites {{tweet.likes}}</p>
-        <p class="time_stamp fl-r fz-md">
+        <p class="time_stamp fl-r fz-lg">
           {{ parseDate(tweet.timestamp) | timeago }}
         </p>
       </div>
