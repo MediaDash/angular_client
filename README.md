@@ -5,6 +5,8 @@ WaveBoard turns any monitor into a "jumbotron" that showcases recent social medi
 
 This WaveBoard client accesses the API provided by an API service we also authored, the [WaveBoard API service](https://github.com/MediaDash/api_wrappers).
 
+![Montage of Instagram Photos](Screenshot.png)
+
 #Authors
 * Andrew Archer (angular controller, css3 animations, instagram montage)
 * Julian Gallegos (twitter cards, view rotation)
