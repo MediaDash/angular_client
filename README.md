@@ -6,7 +6,7 @@ WaveBoard turns any monitor into a "jumbotron" that showcases recent social medi
 This WaveBoard client accesses the API provided by the [WaveBoard API service](https://github.com/MediaDash/api_wrappers).
 
 #Authors
-* Andrew Archer (angular setup, css3 animations, instagram montage)
+* Andrew Archer (angular controller, css3 animations, instagram montage)
 * Julian Gallegos (twitter cards, view rotation)
 * Bryan Woodhams (instagram lightbox effect)
 * Yash Varma (socket.io integration for live tweets)
